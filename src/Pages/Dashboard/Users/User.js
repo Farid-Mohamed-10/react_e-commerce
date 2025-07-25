@@ -31,6 +31,7 @@ export default function User() {
     setLoading(true);
     e.preventDefault();
     try {
+      // eslint-disable-next-line no-unused-vars
       const res = await Axios.post(`${USER}/edit/${id}`, {
         name: name,
         email: email,

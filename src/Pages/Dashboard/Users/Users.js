@@ -58,6 +58,7 @@ export default function Users() {
   // Handle Delete
   async function handleDelete(id) {
     try {
+      // eslint-disable-next-line no-unused-vars
       const res = await Axios.delete(`${USER}/${id}`);
       setUsers((prev) => prev.filter((item) => item.id !== id));
     }

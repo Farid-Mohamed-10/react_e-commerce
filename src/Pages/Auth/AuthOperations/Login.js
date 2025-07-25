@@ -50,7 +50,7 @@ export default function Login() {
       // console.log(role);
       const go = role === '1995' ? 'users' : '/';
       cookie.set('e-commerce', token);
-      window.location.pathname = `/dashboard/${go}`;
+      navigate(`/dashboard/${go}`);
     }
     catch (error) {
       setLoading(false);
