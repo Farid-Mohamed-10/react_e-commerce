@@ -1,4 +1,4 @@
-export const baseURL = `http://127.0.0.1:8000/api`;
+export const baseURL = `https://patient-cat-production-ed1f.up.railway.app/api`;
 
 // Auth
 export const REGISTER = "register";
