@@ -8,7 +8,7 @@ import LatestProducts from '../../../Components/Website/Product/LatestProducts/S
 export default function HomePage() {
   return (
     <div>
-      {/* <Landing /> */}
+      <Landing />
       <ShowLatestSaleProducts />
       <Container>
         <div className='d-flex align-items-stretch flex-wrap mt-5'>
