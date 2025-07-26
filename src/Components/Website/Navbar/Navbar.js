@@ -172,7 +172,6 @@ export default function NavBar() {
                   <div className="d-flex align-items-center justify-content-center gap-2">
                     <NavLink to="/login" className="btn btn-outline-primary">Login</NavLink>
                     <NavLink to="/register" className="btn btn-outline-primary">Register</NavLink>
-                    <NavLink to="/dashboard" className="btn btn-outline-primary">Dashboard</NavLink>
                   </div>
                 ) : (
                   <div>
