@@ -4,7 +4,6 @@ import { baseURL, LOGIN } from "../../../Api/Api";
 import Loading from "../../../Components/Loading/Loading";
 import Cookie from 'cookie-universal';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   // States
@@ -12,9 +11,6 @@ export default function Login() {
     email: '',
     password: '',
   });
-
-  // Navigate
-  const navigate = useNavigate();
 
   // Error
   const [err, setErr] = useState("");
@@ -47,7 +43,6 @@ export default function Login() {
       setLoading(false);
       const token = res.data.token;
       const role = res.data.user.role;
-      // console.log(role);
       const go = role === '1995' ? '/dashboard/users' : '/';
       cookie.set('e-commerce', token);
       window.location.pathname = `${go}`;

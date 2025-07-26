@@ -13,6 +13,8 @@ export default function Users() {
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
 
+  
+
   // Select The Current User
   useEffect(() => {
     Axios.get(`${USER}`).then((res) => setCurrentUser(res.data));

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
 import './Navbar.css';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Axios } from "../../../Api/axios";
-import { CATEGORIES } from "../../../Api/Api";
+import { CATEGORIES, LOGOUT } from "../../../Api/Api";
 import StringSlice from "../../../Helpers/StringSlice";
 import Skeleton from "react-loading-skeleton";
 import SkeletonShow from "../Skeleton/SkeletonShow";
@@ -11,18 +11,24 @@ import { Cart } from "../../../Context/CartChangerContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import PlusMinusBtns from "../Btns/PlusMinusBtns";
+import Cookie from 'cookie-universal';
 
 export default function NavBar() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(5)
+  // eslint-disable-next-line no-unused-vars
+  const [count, setCount] = useState(5);
   const { isChange } = useContext(Cart);  
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const cookie = Cookie();
+  const token = cookie.get("e-commerce");
+  console.log(token);
   
   useEffect(() => {
     Axios.get(`${CATEGORIES}`).then(res => setCategories(res.data.slice(-8))).finally(() => setLoading(false));
@@ -32,6 +38,7 @@ export default function NavBar() {
     const getProducts = JSON.parse(localStorage.getItem("product")) || [];
     setProducts(getProducts);
   }, [isChange]);
+
 
   const categoriesShow = categories.map((category, index) => (
     <Link
@@ -53,6 +60,18 @@ export default function NavBar() {
     const findProduct = getProducts.find((product) => product.id === id);
     findProduct.count = btnCount;
     localStorage.setItem("product", JSON.stringify(getProducts));
+  }
+
+  async function handleLogout() {
+    try {
+      const res = await Axios.get(`/${LOGOUT}`);
+      cookie.remove("e-commerce");
+      alert("You're Successfully Loged out");
+      window.location.pathname = "/login";
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   const productsShow = products?.map((product, key) => (
@@ -118,7 +137,7 @@ export default function NavBar() {
                 alt="Logo"
               />
             </Link>
-            <div className="col-12 col-md-6 order-md-2 order-3 mt-md-0 mt-3 position-relative">
+            <div className="col-12 col-md-5 order-md-2 order-3 mt-md-0 mt-3 position-relative">
               <Form.Control
                 type="search"
                 className="form-control custom-search py-3 rounded-0"
@@ -129,23 +148,38 @@ export default function NavBar() {
                 Search
               </h3>
             </div>
-            <div className="col-3 d-flex align-items-center justify-content-end gap-4 order-md-3 order-1">
-              <div onClick={handleShow} to="/cart" >
-                <img
-                  width="30px"
-                  src={require("../../../Assets/Images/Icons/Cart.png")}
-                  alt="Cart"
-                  style={{ cursor: 'pointer' }}
-                />
+            <div className="col-3 d-flex align-items-center justify-content-center flex-column-reverse gap-3 order-md-3 order-1">
+              <div className="d-flex gap-5 ">
+                <div onClick={handleShow} to="/cart" >
+                  <img
+                    width="30px"
+                    src={require("../../../Assets/Images/Icons/Cart.png")}
+                    alt="Cart"
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
+                <Link to="/profile">
+                  <img
+                    width="35px"
+                    src={require("../../../Assets/Images/Icons/User-Profile.png")}
+                    alt="Profile"
+                    style={{ cursor: 'pointer' }}
+                  />
+                </Link>
               </div>
-              <Link to="/profile">
-                <img
-                  width="35px"
-                  src={require("../../../Assets/Images/Icons/User-Profile.png")}
-                  alt="Profile"
-                  style={{ cursor: 'pointer' }}
-                />
-              </Link>
+              <div className="d-flex align-items-center justify-content-end gap-2">
+                {!token ? (
+                  <div className="d-flex align-items-center justify-content-center gap-2">
+                    <NavLink to="/login" className="btn btn-outline-primary">Login</NavLink>
+                    <NavLink to="/register" className="btn btn-outline-primary">Register</NavLink>
+                    <NavLink to="/dashboard" className="btn btn-outline-primary">Dashboard</NavLink>
+                  </div>
+                ) : (
+                  <div>
+                    <Button onClick={handleLogout} variant="outline-primary">Logout</Button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div className="mt-4">

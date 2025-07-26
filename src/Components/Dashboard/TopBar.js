@@ -1,20 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { Dropdown } from 'react-bootstrap';
-import { DropdownButton } from 'react-bootstrap';
 import './Bars.css';
 import { useContext, useEffect, useState } from "react";
 import { Menu } from "../../Context/MenuContext";
-import { LOGOUT, USER } from "../../Api/Api";
+import { USER } from "../../Api/Api";
 import { Axios } from "../../Api/axios";
-import { useNavigate } from "react-router-dom";
-import Cookie from 'cookie-universal';
-
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function TopBar() {
   const menu = useContext(Menu);
   const setIsOpen = menu.setIsOpen;
-  const cookie = Cookie();
 
   const [name, setName] = useState("");
   
@@ -25,19 +20,8 @@ export default function TopBar() {
       Axios.get(`/${USER}`)
         .then((data) => setName(data.data.name))
         .catch(() => Navigate('/login', { replace: true }));
-    }, []);
+    }, [Navigate]);
 
-    async function handleLogout() {
-      try {
-        const res = await Axios.get(`/${LOGOUT}`);
-        cookie.remove("e-commerce");
-        window.location.pathname = "/login";
-      }
-      catch (error) {
-        console.log(error)
-      }
-    }
-  
   return (
     <div className='top-bar'>
       <div className="d-flex align-items-center justify-content-between h-100">
@@ -45,10 +29,9 @@ export default function TopBar() {
           <h3>Dashboard</h3>
           <FontAwesomeIcon onClick={() => setIsOpen(prev => !prev)} cursor={'pointer'} icon={faBars} />
         </div>
-        <div>
-          <DropdownButton id="dropdown-basic-button" title={name}>
-            <Dropdown.Item onClick={handleLogout} >Logout</Dropdown.Item>
-          </DropdownButton>
+        <div className="d-flex align-items-center justify-content-center gap-2">
+          <h5 className="m-0">{name}</h5>
+          <NavLink className="btn btn-outline-primary" to="/">Home Page</NavLink>
         </div>
       </div>
     </div>
