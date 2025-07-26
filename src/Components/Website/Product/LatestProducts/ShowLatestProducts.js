@@ -5,12 +5,14 @@ import SaleProducts from '../SaleProducts/SaleProducts';
 import SkeletonShow from "../../Skeleton/SkeletonShow";
 
 export default function LatestProducts() {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Axios.get(`${LATEST}`).then((res) => setProducts(res.data)).finally(() => setLoading(false));
   }, []);
+
+  console.log(products);
 
   const showProducts = products.map((product, index) =>
     <SaleProducts

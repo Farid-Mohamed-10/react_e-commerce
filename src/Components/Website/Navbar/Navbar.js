@@ -17,7 +17,6 @@ export default function NavBar() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [count, setCount] = useState(5);
   const { isChange } = useContext(Cart);  
 
@@ -28,7 +27,6 @@ export default function NavBar() {
 
   const cookie = Cookie();
   const token = cookie.get("e-commerce");
-  console.log(token);
   
   useEffect(() => {
     Axios.get(`${CATEGORIES}`).then(res => setCategories(res.data.slice(-8))).finally(() => setLoading(false));

@@ -13,6 +13,8 @@ export default function ShowLatestSaleProducts() {
     Axios.get(`${LatestSale}`).then((res) => setProducts(res.data)).finally(() => setLoading(false));
   }, []);
 
+  console.log(products);
+
   const showProducts = products.map((product, index) =>
     <SaleProducts
       key={index}
