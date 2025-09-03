@@ -111,7 +111,7 @@ export default function TableShow(props) {
   // Return Data
   return (
     <>
-      <div className="d-flex align-items-center justify-content-between flex-wrap mt-2 mb-4 box-shadow rounded">
+      <div className="d-flex align-items-center justify-content-between flex-wrap mt-2 mb-4 rounded">
         <div
           className="d-flex align-items-start flex-column"
           

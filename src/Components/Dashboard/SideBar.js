@@ -38,12 +38,11 @@ export default function SideBar() {
         display: windowSize < '768' && isOpen ? 'block' : 'none'
       }}
       ></div>
-      <div className='side-bar pt-3 d-flex flex-column gap-2'
+      <div className='side-bar pt-3 d-flex flex-column gap-2 box-shadow'
         style={{
           left: windowSize < '768' ? (isOpen ? 0 : "-100%") : 0,
           width: isOpen ? '240px' : 'fit-content',
           position: windowSize < '768' ? "fixed" : "sticky",
-          transition: '0.3s',
         }}
       >
         {links.map(

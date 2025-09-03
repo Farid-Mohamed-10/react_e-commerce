@@ -14,10 +14,10 @@ export default function TopRated(props) {
   ));
 
   return (
-    <NavLink to={`/product/${props.id}`} className="col-12 border-bottom d-flex align-items-start flex-wrap mb-2">
+    <NavLink to={`/product/${props.id}`} className="p-3 col-lg-5 col-md-11 col-12 d-flex align-items-start flex-wrap mb-2 low-shadow">
       <div
         alt="Product"
-        className="col-md-4 col-12"
+        className="col-md col-12"
         style={{
           backgroundImage: `url('${props.img}')`,
           backgroundPosition: 'center',
@@ -25,13 +25,12 @@ export default function TopRated(props) {
           height: '170px',
         }}
       ></div>
-      <div className="m-1 col-md-7 col-12 rounded p-3 h-100 d-flex flex-column justify-content-between">
+      <div className="m-1 col-md-6 col-12 rounded h-100 d-flex flex-column justify-content-between">
         <div>
           <p className="text-truncate" style={{ color: 'gray' }}>{props.title}</p>
           <p className="text-truncate text-black">{props.description}</p>
         </div>
-      
-        <div className="d-flex align-items-center justify-content-between pt-4">
+        <div className="d-flex align-items-center justify-content-between">
           <div>
             {showGoldStars}
             {showEmptyStars}

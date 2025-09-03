@@ -15,7 +15,6 @@ export default function SingleProduct() {
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(5);
   const [productImages, setProductImages] = useState([]);
-  const [error, setError] = useState("");
   const [loadingCart, setLoadingCart] = useState(false);
   const [loading, setLoading] = useState(true);
   const { setIsChange } = useContext(Cart);
@@ -129,7 +128,6 @@ export default function SingleProduct() {
                       <h6 className="m-0" style={{ color: 'gray', textDecoration: 'line-through' }}>${product.price}</h6>
                     </div>
                   </div>
-                    
                   {product.stock === 0 ? (
                     <p>This Product Is Unavilable</p>
                   ) : (

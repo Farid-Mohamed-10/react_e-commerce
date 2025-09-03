@@ -19,6 +19,7 @@ import UpdateProduct from './Pages/Dashboard/Products/UpdateProduct';
 import WebsiteCategories from './Pages/Website/Categories/Categories';
 import Website from './Pages/Website/Website';
 import SingleProduct from './Pages/Website/SingleProduct/SingleProduct';
+import Checkout from './Pages/Checkout/Checkout';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         {/* Public Routes */}
         <Route element={<Website />}>
           <Route path='/' element={<HomePage />} />
+          <Route path='/checkout' element={<Checkout />} />
           <Route path="/categories" element={<WebsiteCategories />} />
           <Route path="/product/:id" element={<SingleProduct />} />
         </Route>

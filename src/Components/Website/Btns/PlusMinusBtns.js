@@ -1,22 +1,45 @@
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
+// import { PRODUCT } from "../../../Api/Api";
+// import { Axios } from "../../../Api/axios";
 
 export default function PlusMinusBtns(props) {
   const [btn, setBtn] = useState(1);
+  // const [product, setProduct] = useState([]);
+  // const { id } = useParams();
 
   useEffect(() => {
     props.setCount(btn);
     if (props.changeCount) {
       props.changeCount(props.id, btn)
     }
-  }, [btn]);
+  }, [btn, props]);
+
+  // let stock = product.stock;
+  // console.log(stock);
 
   useEffect(() => {
     if (props.count) {
-      setBtn(props.count)
+      setBtn(props.count);
     }
-  }, [props.count])
+  }, [props.count]);
+
+  // useEffect(() => {
+  //   Axios.get(`${PRODUCT}/${id}`)
+  //     .then((res) => {
+  //       setProduct(res.data[0]);
+  //     })
+  // }, [id]);
+
+  // function increaseStock() {
+  //   stock++;
+  // }
+
+  // function decreaseStock() {
+  //   stock--;
+  // }
 
   return (
     <div className="input-group d-flex align-items-center gap-3">
@@ -35,6 +58,7 @@ export default function PlusMinusBtns(props) {
           className="btn btn-danger btn-number"
           data-type="minus"
           data-field="quant[2]"
+          // onClick={increaseStock}
         >
           <FontAwesomeIcon icon={faMinus} />
         </button>
@@ -65,6 +89,7 @@ export default function PlusMinusBtns(props) {
           className="btn btn-success btn-number"
           data-type="plus"
           data-field="quant[2]"
+          // onClick={decreaseStock}
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>

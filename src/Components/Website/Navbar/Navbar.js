@@ -3,7 +3,7 @@ import { Button, Container, Form, Modal } from "react-bootstrap";
 import './Navbar.css';
 import { Link, NavLink } from "react-router-dom";
 import { Axios } from "../../../Api/axios";
-import { CATEGORIES, LOGOUT } from "../../../Api/Api";
+import { CATEGORIES, LOGOUT, USER } from "../../../Api/Api";
 import StringSlice from "../../../Helpers/StringSlice";
 import Skeleton from "react-loading-skeleton";
 import SkeletonShow from "../Skeleton/SkeletonShow";
@@ -13,14 +13,18 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import PlusMinusBtns from "../Btns/PlusMinusBtns";
 import Cookie from 'cookie-universal';
 
+
 export default function NavBar() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [count, setCount] = useState(5);
   const { isChange } = useContext(Cart);  
 
   const [show, setShow] = useState(false);
+
+  const [role, setRole] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,6 +41,18 @@ export default function NavBar() {
     setProducts(getProducts);
   }, [isChange]);
 
+
+  // Navigate
+
+  useEffect(() => {
+    if (token) {
+      Axios.get(`/${USER}`)
+        .then((data) => {
+          setRole(data.data.role);
+        })
+        .catch((error) => console.log(`Error In Fetching User Data ${error}`));
+    }
+  }, [token]);
 
   const categoriesShow = categories.map((category, index) => (
     <Link
@@ -122,7 +138,7 @@ export default function NavBar() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Checkout</Button>
+          <Link to="/checkout" className="btn btn-primary">Checkout</Link>
         </Modal.Footer>
       </Modal>
       <nav className="py-3">
@@ -148,7 +164,7 @@ export default function NavBar() {
             </div>
             <div className="col-3 d-flex align-items-center justify-content-center flex-column-reverse gap-3 order-md-3 order-1">
               <div className="d-flex gap-5 ">
-                <div onClick={handleShow} to="/cart" >
+                <div onClick={handleShow} to="/cart">
                   <img
                     width="30px"
                     src={require("../../../Assets/Images/Icons/Cart.png")}
@@ -172,7 +188,8 @@ export default function NavBar() {
                     <NavLink to="/register" className="btn btn-outline-primary">Register</NavLink>
                   </div>
                 ) : (
-                  <div>
+                  <div className="d-flex align-items-center justify-content-center gap-2">
+                    {role === "1995" && <NavLink to="/dashboard" className="btn btn-outline-primary">Dashboard</NavLink>}
                     <Button onClick={handleLogout} variant="outline-primary">Logout</Button>
                   </div>
                 )}

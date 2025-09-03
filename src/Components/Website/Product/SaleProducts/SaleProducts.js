@@ -15,12 +15,12 @@ export default function Product(props) {
   ));
 
   return (
-    <NavLink to={`/product/${props.id}`} className={`col-lg-${props.col} col-md-6 col-12`}>
+    <NavLink to={`/product/${props.id}`} className={`col-lg-${props.col} col-md-6 col-12 single-product`}>
       <div className="m-1 border rounded p-3 h-100 d-flex flex-column justify-content-between">
         <div>
           <p className="text-truncate" style={{ color: 'gray' }}>{props.title}</p>
           <p className="text-truncate text-black">{ props.description }</p>
-          <div className="px-5 py-4 position-relative">
+          <div className="px-4 py-3 position-relative">
             {props.sale && <p
               className="m-0 position-absolute top-0 start-0 bg-primary rounded-circle text-white text-uppercase d-inline-block text-center"
               style={{ width: "50px", height: "50px", lineHeight: '50px' }}
@@ -29,9 +29,9 @@ export default function Product(props) {
             </p>}
             <div
               alt="Product"
-              className="w-100"
+              className="w-100 image"
               style={{
-                backgroundImage: `url('${props.img}')`,
+                backgroundImage: `url(${props.img})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 height: '170px',

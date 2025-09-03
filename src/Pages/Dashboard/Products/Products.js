@@ -71,7 +71,7 @@ export default function Products() {
   return (
     <div className="bg-white p-2 w-100">
       <div className="d-flex align-items-center justify-content-between">
-        <h1>Products Page</h1>
+        <h1>Products</h1>
         <Link className="btn btn-outline-primary mx-2" to="/dashboard/product/add">
           Add Product
         </Link>

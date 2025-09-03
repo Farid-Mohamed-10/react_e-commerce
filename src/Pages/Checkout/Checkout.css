@@ -1,0 +1,68 @@
+.first-name,
+.last-name {
+  flex-basis: 48%;
+}
+
+.apt-number,
+.state,
+.zip {
+  flex-basis: 32%;
+}
+
+.buttons .cancel {
+  flex-basis: 32%;
+}
+.buttons .save {
+  flex-basis: 66%;
+}
+
+.container {
+  gap: 20px;
+}
+
+@media (max-width: 991px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .shipping-card {
+    flex-basis: 100%;
+  }
+
+  .order-card {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .first-name,
+  .last-name {
+    flex-basis: 100%;
+  }
+
+  .apt-number,
+  .state,
+  .zip {
+    flex-basis: 48%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .shipping-card {
+    flex-basis: 100%;
+  }
+
+  .order-card {
+    flex-basis: 100%;
+  }
+}

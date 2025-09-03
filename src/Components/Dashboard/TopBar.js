@@ -18,20 +18,25 @@ export default function TopBar() {
 
   useEffect(() => {
       Axios.get(`/${USER}`)
-        .then((data) => setName(data.data.name))
+        .then((data) => {
+          setName(data.data.name);
+          console.log(data.data.role)
+        })
         .catch(() => Navigate('/login', { replace: true }));
-    }, [Navigate]);
+  }, [Navigate]);
+  
+
 
   return (
     <div className='top-bar'>
       <div className="d-flex align-items-center justify-content-between h-100">
-        <div className="d-flex align-items-center gap-5">
-          <h3>Dashboard</h3>
+        <div className="d-flex align-items-center gap-3">
+          <h2 className="m-0">Dashboard</h2>
           <FontAwesomeIcon onClick={() => setIsOpen(prev => !prev)} cursor={'pointer'} icon={faBars} />
         </div>
-        <div className="d-flex align-items-center justify-content-center gap-2">
+        <div className="d-flex align-items-center justify-content-center gap-3">
           <h5 className="m-0">{name}</h5>
-          <NavLink className="btn btn-outline-primary" to="/">Home Page</NavLink>
+          <NavLink className="px-3 py-2 btn btn-outline-primary" to="/">Go To Home Page</NavLink>
         </div>
       </div>
     </div>

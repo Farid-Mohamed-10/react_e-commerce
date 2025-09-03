@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Axios } from "../../../../Api/axios";
 import { LatestSale } from "../../../../Api/Api";
 import SaleProducts from './SaleProducts';
-import { Container } from "react-bootstrap";
 import SkeletonShow from "../../Skeleton/SkeletonShow";
 
 export default function ShowLatestSaleProducts() {
@@ -10,15 +9,16 @@ export default function ShowLatestSaleProducts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Axios.get(`${LatestSale}`).then((res) => setProducts(res.data)).finally(() => setLoading(false));
+    Axios.get(`${LatestSale}`)
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, []);
-
-  console.log(products);
 
   const showProducts = products.map((product, index) =>
     <SaleProducts
       key={index}
-      title={product.title} 
+      title={product.title}
       description={product.description}
       img={product.images[0].image}
       sale
@@ -28,12 +28,15 @@ export default function ShowLatestSaleProducts() {
       id={product.id}
       col="3"
     />
-  )
+  );
 
   return (
-    <Container className="mt-5">
-      <h1>Latest Sale Products</h1>
-      <div className="d-flex align-items-stretch justify-content-center flex-wrap mt-5 mb-5 row-gap-2 mb-5">
+    <div className="my-5 box-shadow rounded d-flex align-items-center justify-content-center flex-column">
+      <h1
+        className="mx-2 mt-4 px-4 py-2 rounded text-white"
+        style={{backgroundColor: '#0D6EFD', width: 'fit-content'}}
+      >Latest Sale Products</h1>
+      <div className="d-flex align-items-stretch justify-content-center flex-wrap mt-5 mb-5 mx-2 row-gap-3 mb-5">
         {loading ? (
           <>
             <SkeletonShow lenght="4" height="300px" classes="col-lg-3 col-md-6 col-12" />
@@ -42,6 +45,6 @@ export default function ShowLatestSaleProducts() {
           showProducts
         )}
       </div>
-    </Container>
+    </div>
   );
 }

@@ -57,7 +57,7 @@ export default function Categories() {
   return (
     <div className="bg-white w-100 px-4 py-3 rounded low-shadow">
       <div className="d-flex align-items-center justify-content-between">
-        <h1>Categories Page</h1>
+        <h1>Categories</h1>
         <Link className="btn btn-outline-primary mx-2" to="/dashboard/category/add">
           Add Category
         </Link>

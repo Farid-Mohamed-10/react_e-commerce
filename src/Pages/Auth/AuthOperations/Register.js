@@ -4,7 +4,7 @@ import { baseURL, REGISTER } from "../../../Api/Api";
 import Loading from "../../../Components/Loading/Loading";
 import Cookie from 'cookie-universal';
 import { Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   // States
@@ -115,8 +115,8 @@ export default function Register() {
               </Form.Group>
             </div>
             <button className="button button-primary">Register</button>
-              
-            <div className="google-btn">
+            
+            <div className="google-btn mt-3">
               <a href={`http://127.0.0.1:8000/login-google`}>
                 <div className="google-icon-wrapper">
                   
@@ -127,6 +127,8 @@ export default function Register() {
               </a>
             </div>
             {err !== "" && <span className="error">{err}</span>}
+
+            <p className="mt-3">Already You Have An Account? <Link to="/login" className="text-black" style={{textDecoration: 'underline'}}>Login Now</Link></p>
           </Form>
         </div>
       </div>

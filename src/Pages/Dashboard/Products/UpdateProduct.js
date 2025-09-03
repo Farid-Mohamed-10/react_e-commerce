@@ -182,8 +182,12 @@ export default function UpdateProduct() {
   return (
     <>
       {loading && <Loading />}
-      <Form className='bg-white p-3 w-100' onSubmit={handleEdit} >
-        <Form.Group className="mb-3" controlId="category">
+      <Form
+        className='bg-white p-5 w-100 my-5 mx-4 d-flex align-items-center justify-content-center flex-column box-shadow rounded'
+        onSubmit={handleEdit}
+      >
+        <h1 className='mb-3 text-center'>Update Product</h1>
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="category">
           <Form.Label>Category</Form.Label>
           <Form.Select
             ref={focus}
@@ -191,12 +195,18 @@ export default function UpdateProduct() {
             onChange={handleChange}
             name='category'
             placeholder="Category..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           >
             <option disabled>Select Category</option>
             {categoriesShow}
           </Form.Select>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="title">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
             value={form.title}
@@ -205,9 +215,15 @@ export default function UpdateProduct() {
             required
             type="text"
             placeholder="Title..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="description">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="description">
           <Form.Label>Description</Form.Label>
           <Form.Control
             value={form.description}
@@ -216,9 +232,15 @@ export default function UpdateProduct() {
             required
             type="text"
             placeholder="Description..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="price">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="price">
           <Form.Label>Price</Form.Label>
           <Form.Control
             value={form.price}
@@ -227,9 +249,15 @@ export default function UpdateProduct() {
             required
             type="text"
             placeholder="Price..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="discount">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="discount">
           <Form.Label>Discount</Form.Label>
           <Form.Control
             value={form.discount}
@@ -238,9 +266,15 @@ export default function UpdateProduct() {
             required
             type="text"
             placeholder="Discount..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="about">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="about">
           <Form.Label>About</Form.Label>
           <Form.Control
             value={form.About}
@@ -249,9 +283,15 @@ export default function UpdateProduct() {
             required
             type="text"
             placeholder="About..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="stock">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="stock">
           <Form.Label>Stock</Form.Label>
           <Form.Control
             value={form.stock}
@@ -260,9 +300,15 @@ export default function UpdateProduct() {
             required
             type="text"
             placeholder="Stock..."
+            style={{
+              border: 'none',
+              outline: 'none',
+              boxShadow: '10px 10px 20px #babecc, -10px -10px 20px #ffffff',
+              padding: '10px 15px'
+            }}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="images">
+        <Form.Group className="mb-3 px-5 w-100 d-flex flex-column" controlId="images">
           <Form.Label>Images</Form.Label>
           <Form.Control
             ref={openImage}
@@ -272,13 +318,13 @@ export default function UpdateProduct() {
             type="file"
           />
         </Form.Group>
-
         <div
           onClick={handleOpenImage}
-          className='d-flex align-items-center justify-content-center gap-2 w-100 py-3 rounded mb-2 flex-column'
+          className='d-flex align-items-center justify-content-center gap-2 py-3 rounded mb-2 flex-column'
           style={{
             border: '2px dashed #0086fe',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            width: '90%'
           }}>
           <img
             src={require('./../../../Assets/Images/upload.png')}
@@ -288,14 +334,13 @@ export default function UpdateProduct() {
           <p className='fw-bold mb-0' style={{color: '#0086fe'}}>Upload Images</p>
         </div>
 
-        <div className='d-flex align-items-start flex-wrap gap-2'>
+        <div className='d-flex align-items-start flex-wrap gap-2 my-3' style={{width: '90%'}}>
           {imagesFromServerShow}
         </div>
-        <div className='d-flex align-items-start flex-column gap-2'>
+        <div className='d-flex align-items-start flex-column gap-3 rounded mb-3' style={{width: '90%'}}>
           {imagesShow}
         </div>
-
-        <button className='btn btn-primary mt-2'>Save</button>
+        <button className='btn btn-primary mt-2' style={{width: '90%'}}>Save</button>
       </Form>
     </>
   );

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Axios } from "../../../../Api/axios";
-import { Container } from "react-bootstrap";
 import TopRated from "./TopRated";
 import { TOP_RATED } from "../../../../Api/Api";
 import SkeletonShow from "../../Skeleton/SkeletonShow";
@@ -30,10 +29,10 @@ export default function ShowTopRated() {
   )
 
   return (
-    <Container>
-      <div className="col-md-6 col-12" style={{ border: '2px solid #0D6EFD' }}>
+  
+      <div className="mx-3 rounded" style={{ border: '2px solid #0D6EFD' }}>
         <h1 className="text-center m-0 p-3 bg-primary text-white">Top Rated</h1>
-        <div className="p-5">
+        <div className="py-4 rounded d-flex align-items-center justify-content-evenly flex-wrap row-gap-3">
           {loading ? (
             <>
               <SkeletonShow lenght="1" height="800px" baseColor="white" classes="col-12" />
@@ -43,6 +42,5 @@ export default function ShowTopRated() {
           )}
         </div>
       </div>
-    </Container>
   );
 }

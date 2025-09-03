@@ -4,6 +4,7 @@ import { baseURL, LOGIN } from "../../../Api/Api";
 import Loading from "../../../Components/Loading/Loading";
 import Cookie from 'cookie-universal';
 import Form from 'react-bootstrap/Form';
+import { Link } from "react-router-dom";
 
 export default function Login() {
   // States
@@ -110,6 +111,8 @@ export default function Login() {
               </a>
             </div>
             {err !== "" && <span className="error">{err}</span>}
+
+            <p className="mt-5">You Don't Have An Account? <Link to="/register" className="text-black" style={{textDecoration: 'underline'}}>Register Now</Link></p>
           </Form>
         </div>
       </div>

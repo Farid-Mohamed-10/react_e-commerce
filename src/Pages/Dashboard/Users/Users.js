@@ -72,7 +72,7 @@ export default function Users() {
   return (
     <div className="bg-white p-2 w-100">
       <div className="d-flex align-items-center justify-content-between">
-        <h1>Users Page</h1>
+        <h1>Users</h1>
         <Link className="btn btn-outline-primary mx-2" to="/dashboard/user/add">
           Add User
         </Link>
